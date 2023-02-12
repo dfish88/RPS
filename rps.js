@@ -41,7 +41,8 @@ function playRound(playerSelection, computerSelection)
 
 function game()
 {
-    
+    var playerWins = 0;
+    var computerWins = 0;
 
     for(let i = 0; i < 5; i++)
     {
@@ -49,8 +50,29 @@ function game()
         var computerMove = getComputerChoice();
         var result = playRound(playerMove, computerMove);
 
+        if (result.winner == "Player")
+            playerWins++;
+        else if(result.winner == "Computer")
+            computerWins++;
+
         console.log(result.message);
     }
+
+    if (playerWins > computerWins)
+    {
+        console.log("You Win!");
+    }
+    else if (computerWins > playerWins)
+    {
+        console.log("You Lose!");
+    }
+    else
+    {
+        console.log("Draw!");
+    }
+
+    console.log("Final score is Player : " + playerWins.toString() + " Computer : " + computerWins.toString());
+
 }
 
 game();
