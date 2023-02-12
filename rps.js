@@ -6,4 +6,31 @@ function getComputerChoice()
     return choices[choice];
 }
 
-console.log(getComputerChoice());
+function playRound(playerSelection, computerSelection)
+{
+    var ps = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+    var cs = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
+    var message = "";
+
+    if( 
+        (ps == "Rock" && cs == "Scissors") ||
+        (ps == "Paper" && cs == "Rock") ||
+        (ps == "Scissors" && cs == "Paper")
+    )
+    {
+        message = "You Win! " + ps + " beats " + cs;
+    }
+    else if(
+        (cs == "Rock" && ps == "Scissors") ||
+        (cs == "Paper" && ps == "Rock") ||
+        (cs == "Scissors" && ps == "Paper")
+    )
+    {
+        message = "You Lose! " + cs + " beats " + ps;
+    }
+    else
+    {
+        message = "Draw! Try again."
+    }
+    return message;
+}
