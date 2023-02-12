@@ -11,6 +11,7 @@ function playRound(playerSelection, computerSelection)
     var ps = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
     var cs = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
     var message = "";
+    var winner = "";
 
     if( 
         (ps == "Rock" && cs == "Scissors") ||
@@ -19,6 +20,7 @@ function playRound(playerSelection, computerSelection)
     )
     {
         message = "You Win! " + ps + " beats " + cs;
+        winner = "Player";
     }
     else if(
         (cs == "Rock" && ps == "Scissors") ||
@@ -27,10 +29,28 @@ function playRound(playerSelection, computerSelection)
     )
     {
         message = "You Lose! " + cs + " beats " + ps;
+        winner = "Computer";
     }
     else
     {
         message = "Draw! Try again."
+        winner = "";
     }
-    return message;
+    return { winner : winner, message : message};
 }
+
+function game()
+{
+    
+
+    for(let i = 0; i < 5; i++)
+    {
+        var playerMove = prompt("Enter your move: ");
+        var computerMove = getComputerChoice();
+        var result = playRound(playerMove, computerMove);
+
+        console.log(result.message);
+    }
+}
+
+game();
