@@ -1,7 +1,6 @@
-const choices = { 0 : "Rock", 1 : "Paper", 2 : "Scissors"}
-
 function getComputerChoice()
 {
+    const choices = { 0 : "Rock", 1 : "Paper", 2 : "Scissors"}
     var choice = Math.floor(Math.random() * 3);
     return choices[choice];
 }
@@ -36,5 +35,18 @@ function playRound(playerSelection, computerSelection)
         message = "Draw! Try again."
         winner = "";
     }
-    return { winner : winner, message : message};
+    return message;
 }
+
+function displayStatus(status){
+    const statusDiv = document.querySelector('.game-status');
+    statusDiv.textContent = status;
+}
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        let gameStatus = playRound(btn.id, getComputerChoice());
+        displayStatus(gameStatus);
+    });
+});
