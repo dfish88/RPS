@@ -1,4 +1,16 @@
 const score = { player : 0, computer : 0};
+var gameActive = true;
+
+function fullRound(playerChoice){
+
+    if(!gameActive) return;
+
+    let roundStatus = playRound(playerChoice, getComputerChoice());
+    displayRoundStatus(roundStatus);
+    displayScore();
+
+    if (score['computer'] >= 5 || score['player'] >= 5) endGame();
+}
 
 function getComputerChoice()
 {
@@ -38,6 +50,13 @@ function playRound(playerSelection, computerSelection)
     return message;
 }
 
+function endGame(){
+    const statusDiv = document.querySelector('.round-outcome');
+    if (score['player'] > score['computer']) statusDiv.textContent = 'Game Over, You win!';
+    else statusDiv.textContent = 'Game Over, You Lose!';
+    gameActive = false;
+}
+
 function displayScore(){
     const computerScore = document.querySelector('.computer-score');
     const playerScore = document.querySelector('.player-score');
@@ -53,9 +72,5 @@ function displayRoundStatus(status){
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        let roundStatus = playRound(btn.id, getComputerChoice());
-        displayRoundStatus(roundStatus);
-        displayScore();
-    });
+    btn.addEventListener('click', () => { fullRound(btn.id) });
 });
