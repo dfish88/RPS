@@ -1,6 +1,10 @@
 const score = { player : 0, computer : 0};
 var gameActive = true;
 
+const statusDiv = document.querySelector('.round-outcome');
+const playerScore = document.querySelector('.player-score');
+const computerScore = document.querySelector('.computer-score');
+
 function fullRound(playerChoice){
 
     if(!gameActive) return;
@@ -51,22 +55,17 @@ function playRound(playerSelection, computerSelection)
 }
 
 function endGame(){
-    const statusDiv = document.querySelector('.round-outcome');
     if (score['player'] > score['computer']) statusDiv.textContent = 'Game Over, You win!';
     else statusDiv.textContent = 'Game Over, You Lose!';
     gameActive = false;
 }
 
 function displayScore(){
-    const computerScore = document.querySelector('.computer-score');
-    const playerScore = document.querySelector('.player-score');
-
     computerScore.textContent = 'Computer : ' + score['computer'].toString();
     playerScore.textContent = 'Player : ' + score['player'].toString();
 }
 
 function displayRoundStatus(status){
-    const statusDiv = document.querySelector('.round-outcome');
     statusDiv.textContent = status;
 }
 
