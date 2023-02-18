@@ -1,3 +1,5 @@
+const score = { player : 0, computer : 0};
+
 function getComputerChoice()
 {
     const choices = { 0 : "Rock", 1 : "Paper", 2 : "Scissors"}
@@ -10,7 +12,6 @@ function playRound(playerSelection, computerSelection)
     var ps = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
     var cs = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
     var message = "";
-    var winner = "";
 
     if( 
         (ps == "Rock" && cs == "Scissors") ||
@@ -19,7 +20,7 @@ function playRound(playerSelection, computerSelection)
     )
     {
         message = "You Win! " + ps + " beats " + cs;
-        winner = "Player";
+        score['player'] = score['player'] + 1;
     }
     else if(
         (cs == "Rock" && ps == "Scissors") ||
@@ -28,25 +29,33 @@ function playRound(playerSelection, computerSelection)
     )
     {
         message = "You Lose! " + cs + " beats " + ps;
-        winner = "Computer";
+        score['computer'] = score['computer'] + 1;
     }
     else
     {
         message = "Draw! Try again."
-        winner = "";
     }
     return message;
 }
 
-function displayStatus(status){
-    const statusDiv = document.querySelector('.game-status');
+function displayScore(){
+    const computerScore = document.querySelector('.computer-score');
+    const playerScore = document.querySelector('.player-score');
+
+    computerScore.textContent = 'Computer : ' + score['computer'].toString();
+    playerScore.textContent = 'Player : ' + score['player'].toString();
+}
+
+function displayRoundStatus(status){
+    const statusDiv = document.querySelector('.round-outcome');
     statusDiv.textContent = status;
 }
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-        let gameStatus = playRound(btn.id, getComputerChoice());
-        displayStatus(gameStatus);
+        let roundStatus = playRound(btn.id, getComputerChoice());
+        displayRoundStatus(roundStatus);
+        displayScore();
     });
 });
