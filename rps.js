@@ -1,19 +1,24 @@
-const score = { player : 0, computer : 0};
-var gameActive = true;
+const game = {
+    playerScore : 0,
+    computerScore : 0,
+    active : true
+}
 
-const statusDiv = document.querySelector('.round-outcome');
-const playerScore = document.querySelector('.player-score');
-const computerScore = document.querySelector('.computer-score');
+const ui = {
+    statusDiv : document.querySelector('.round-outcome'),
+    playerScore : document.querySelector('.player-score'),
+    computerScore : document.querySelector('.computer-score')
+}
 
 function fullRound(playerChoice){
 
-    if(!gameActive) return;
+    if(!game.active) return;
 
     let roundStatus = playRound(playerChoice, getComputerChoice());
     displayRoundStatus(roundStatus);
     displayScore();
 
-    if (score['computer'] >= 5 || score['player'] >= 5) endGame();
+    if (game.computerScore >= 5 || game.playerScore >= 5) endGame();
 }
 
 function getComputerChoice()
@@ -36,7 +41,7 @@ function playRound(playerSelection, computerSelection)
     )
     {
         message = "You Win! " + ps + " beats " + cs;
-        score['player'] = score['player'] + 1;
+        game.playerScore = game.playerScore + 1;
     }
     else if(
         (cs == "Rock" && ps == "Scissors") ||
@@ -45,7 +50,7 @@ function playRound(playerSelection, computerSelection)
     )
     {
         message = "You Lose! " + cs + " beats " + ps;
-        score['computer'] = score['computer'] + 1;
+        game.computerScore = game.computerScore + 1;
     }
     else
     {
@@ -55,18 +60,18 @@ function playRound(playerSelection, computerSelection)
 }
 
 function endGame(){
-    if (score['player'] > score['computer']) statusDiv.textContent = 'Game Over, You win!';
-    else statusDiv.textContent = 'Game Over, You Lose!';
-    gameActive = false;
+    if (game.playerScore > game.computerScore) ui.statusDiv.textContent = 'Game Over, You win!';
+    else ui.statusDiv.textContent = 'Game Over, You Lose!';
+    game.active = false;
 }
 
 function displayScore(){
-    computerScore.textContent = 'Computer : ' + score['computer'].toString();
-    playerScore.textContent = 'Player : ' + score['player'].toString();
+    ui.computerScore.textContent = 'Computer : ' + game.computerScore.toString();
+    ui.playerScore.textContent = 'Player : ' + game.playerScore.toString();
 }
 
 function displayRoundStatus(status){
-    statusDiv.textContent = status;
+    ui.statusDiv.textContent = status;
 }
 
 const buttons = document.querySelectorAll('button');
