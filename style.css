@@ -1,33 +1,39 @@
-body{
-    margin: 0;
-    background-color: black;
-    color : greenyellow;
+html{
+    height: 100%;
 }
 
-.round-outcome, .scores{
-    display:flex;
+body{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    font-style: italic;
-    font-size: 36px;
+    align-items: center;
+    background-color: black;
+    color : greenyellow;
+    border-color: red;
+    border-style: solid;
+    min-height: 100%;
     font-family: 'Courier New', Courier, monospace;
 }
 
-.scores{
-    font-size: 24px;
-    gap: 24px;
-}
-
-.game-choices, .restart{
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
-
-.choice-button, .restart-button{
+button{
+    font-size: 36px;
     background-color: greenyellow;
     border-radius: 12px;
+}
+
+.game-status{
+    width: 80%;
+}
+
+.game-message{
+    display: flex;
+    justify-content: center;
     font-size: 42px;
 }
-.choice-button:hover{
-    background-color: green;
+
+.scores{
+    display: flex;
+    justify-content: space-between;
+    gap: 42px;
+    font-size: 42px;
 }
