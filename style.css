@@ -1,20 +1,29 @@
-.header{
-    display:flex;
-    justify-content: center;
+body{
+    margin: 0;
     background-color: black;
     color : greenyellow;
-    font-style: italic;
-    font-size: 36px;
 }
 
-.game-choices{
+.round-outcome, .scores{
+    display:flex;
+    justify-content: center;
+    font-style: italic;
+    font-size: 36px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.scores{
+    font-size: 24px;
+    gap: 24px;
+}
+
+.game-choices, .restart{
     display: flex;
     justify-content: center;
     gap: 12px;
-    background-color: gray;
 }
 
-.choice-button{
+.choice-button, .restart-button{
     background-color: greenyellow;
     border-radius: 12px;
     font-size: 42px;
