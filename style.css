@@ -1,6 +1,8 @@
-body{
-    display: flex;
-    flex-direction: column;
+.header{
+    display:flex;
     justify-content: center;
-    align-items: center;
+    background-color: black;
+    color : greenyellow;
+    font-style: italic;
+    font-size: 36px;
 }
