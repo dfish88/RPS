@@ -59,6 +59,15 @@ function playRound(playerSelection, computerSelection)
     return message;
 }
 
+function restartGame(){
+    game.active = true;
+    game.computerScore = 0;
+    game.playerScore = 0;
+    ui.statusDiv.textContent = 'Click a button to play!';
+    ui.playerScore.textContent = 'Player : 0';
+    ui.computerScore.textContent = 'Computer : 0';
+}
+
 function endGame(){
     if (game.playerScore > game.computerScore) ui.statusDiv.textContent = 'Game Over, You win!';
     else ui.statusDiv.textContent = 'Game Over, You Lose!';
@@ -74,7 +83,10 @@ function displayRoundStatus(status){
     ui.statusDiv.textContent = status;
 }
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.choice-button');
 buttons.forEach(btn => {
     btn.addEventListener('click', () => { fullRound(btn.id) });
 });
+
+const restartButton = document.querySelector('.restart-button');
+restartButton.addEventListener('click', restartGame);
