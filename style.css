@@ -6,3 +6,19 @@
     font-style: italic;
     font-size: 36px;
 }
+
+.game-choices{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    background-color: gray;
+}
+
+.choice-button{
+    background-color: greenyellow;
+    border-radius: 12px;
+    font-size: 42px;
+}
+.choice-button:hover{
+    background-color: green;
+}
