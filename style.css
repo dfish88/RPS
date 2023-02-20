@@ -14,10 +14,19 @@ body{
 }
 
 button{
-    font-size: 48px;
+    font-size: 54px;
     background-color: greenyellow;
     border-radius: 12px;
     margin-top: 50px;
+}
+
+button:hover{
+    background-color: green;
+}
+
+.game-choices{
+    display: flex;
+    gap:24px;
 }
 
 .game-status{
