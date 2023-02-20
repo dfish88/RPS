@@ -9,20 +9,29 @@ body{
     align-items: center;
     background-color: black;
     color : greenyellow;
-    border-color: red;
-    border-style: solid;
     min-height: 100%;
     font-family: 'Courier New', Courier, monospace;
 }
 
 button{
-    font-size: 36px;
+    font-size: 48px;
     background-color: greenyellow;
     border-radius: 12px;
+    margin-top: 50px;
 }
 
 .game-status{
-    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 42px;
+    margin-top: 50px;
+    width: 70%;
+}
+
+.player-choice, .computer-choice{
+    font-size: 60px;
+    text-align: center;
+    padding: 24px;
 }
 
 .game-message{
@@ -31,9 +40,3 @@ button{
     font-size: 42px;
 }
 
-.scores{
-    display: flex;
-    justify-content: space-between;
-    gap: 42px;
-    font-size: 42px;
-}
