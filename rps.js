@@ -19,8 +19,7 @@ function fullRound(playerChoice){
     if(!game.active) return;
 
     let roundStatus = playRound(playerChoice, getComputerChoice());
-    displayRoundStatus(roundStatus);
-    displayScore();
+    displayRoundResults(roundStatus);
 
     if (game.computerScore >= 5 || game.playerScore >= 5) endGame();
 }
@@ -83,12 +82,9 @@ function endGame(){
     game.active = false;
 }
 
-function displayScore(){
+function displayRoundResults(status){
     ui.computerScore.textContent = 'Computer : ' + game.computerScore.toString();
     ui.playerScore.textContent = 'Player : ' + game.playerScore.toString();
-}
-
-function displayRoundStatus(status){
     ui.messageDiv.textContent = status;
     ui.playerCurrentChoice.textContent = game.playerCurrentChoice;
     ui.computerCurrentChoice.textContent = game.computerCurrentChoice;
