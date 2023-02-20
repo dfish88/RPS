@@ -11,7 +11,8 @@ const ui = {
     playerScore : document.querySelector('.player-score'),
     playerCurrentChoice : document.querySelector('.player-choice'),
     computerScore : document.querySelector('.computer-score'),
-    computerCurrentChoice : document.querySelector('.computer-choice')
+    computerCurrentChoice : document.querySelector('.computer-choice'),
+    restartDiv : document.querySelector('.restart')
 }
 
 function fullRound(playerChoice){
@@ -74,12 +75,14 @@ function restartGame(){
     ui.computerScore.textContent = 'Computer : 0';
     ui.computerCurrentChoice.textContent = '?';
     ui.playerCurrentChoice.textContent = '?';
+    ui.restartDiv.style.display = 'none';
 }
 
 function endGame(){
     if (game.playerScore > game.computerScore) ui.messageDiv.textContent = 'Game Over, You win!';
     else ui.messageDiv.textContent = 'Game Over, You Lose!';
     game.active = false;
+    ui.restartDiv.style.display = 'flex';
 }
 
 function displayRoundResults(status){
