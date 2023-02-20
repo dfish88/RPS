@@ -1,13 +1,17 @@
 const game = {
     playerScore : 0,
+    playerCurrentChoice : '',
     computerScore : 0,
+    computerCurrentChoice : '',
     active : true
 }
 
 const ui = {
-    statusDiv : document.querySelector('.round-outcome'),
+    messageDiv : document.querySelector('.game-message'),
     playerScore : document.querySelector('.player-score'),
-    computerScore : document.querySelector('.computer-score')
+    playerCurrentChoice : document.querySelector('.player-choice'),
+    computerScore : document.querySelector('.computer-score'),
+    computerCurrentChoice : document.querySelector('.computer-choice')
 }
 
 function fullRound(playerChoice){
@@ -34,13 +38,16 @@ function playRound(playerSelection, computerSelection)
     var cs = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
     var message = "";
 
+    game.playerCurrentChoice = ps.charAt(0);
+    game.computerCurrentChoice = cs.charAt(0);
+
     if( 
         (ps == "Rock" && cs == "Scissors") ||
         (ps == "Paper" && cs == "Rock") ||
         (ps == "Scissors" && cs == "Paper")
     )
     {
-        message = "You Win! " + ps + " beats " + cs;
+        message = "You Win, " + ps.charAt(0) + " beats " + cs.charAt(0);
         game.playerScore = game.playerScore + 1;
     }
     else if(
@@ -49,12 +56,12 @@ function playRound(playerSelection, computerSelection)
         (cs == "Scissors" && ps == "Paper")
     )
     {
-        message = "You Lose! " + cs + " beats " + ps;
+        message = "You Lose, " + cs.charAt(0) + " beats " + ps.charAt(0);
         game.computerScore = game.computerScore + 1;
     }
     else
     {
-        message = "Draw! Try again."
+        message = "Draw, Try again"
     }
     return message;
 }
@@ -63,14 +70,16 @@ function restartGame(){
     game.active = true;
     game.computerScore = 0;
     game.playerScore = 0;
-    ui.statusDiv.textContent = 'Click a button to play!';
+    ui.messageDiv.textContent = 'Click a button to play';
     ui.playerScore.textContent = 'Player : 0';
     ui.computerScore.textContent = 'Computer : 0';
+    ui.computerCurrentChoice.textContent = '?';
+    ui.playerCurrentChoice.textContent = '?';
 }
 
 function endGame(){
-    if (game.playerScore > game.computerScore) ui.statusDiv.textContent = 'Game Over, You win!';
-    else ui.statusDiv.textContent = 'Game Over, You Lose!';
+    if (game.playerScore > game.computerScore) ui.messageDiv.textContent = 'Game Over, You win!';
+    else ui.messageDiv.textContent = 'Game Over, You Lose!';
     game.active = false;
 }
 
@@ -80,7 +89,9 @@ function displayScore(){
 }
 
 function displayRoundStatus(status){
-    ui.statusDiv.textContent = status;
+    ui.messageDiv.textContent = status;
+    ui.playerCurrentChoice.textContent = game.playerCurrentChoice;
+    ui.computerCurrentChoice.textContent = game.computerCurrentChoice;
 }
 
 const buttons = document.querySelectorAll('.choice-button');
