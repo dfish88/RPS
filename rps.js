@@ -75,14 +75,14 @@ function restartGame(){
     ui.computerScore.textContent = 'Computer : 0';
     ui.computerCurrentChoice.textContent = '?';
     ui.playerCurrentChoice.textContent = '?';
-    ui.restartDiv.style.display = 'none';
+    ui.restartDiv.style.visibility = 'hidden';
 }
 
 function endGame(){
     if (game.playerScore > game.computerScore) ui.messageDiv.textContent = 'Game Over, You win!';
     else ui.messageDiv.textContent = 'Game Over, You Lose!';
     game.active = false;
-    ui.restartDiv.style.display = 'flex';
+    ui.restartDiv.style.visibility = 'visible';
 }
 
 function displayRoundResults(status){
